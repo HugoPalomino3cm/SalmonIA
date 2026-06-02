@@ -1,0 +1,118 @@
+/* =========================================
+   LAYOUT LANDING PAGE Y FONDO
+========================================= */
+.landing-body {
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    
+    background-color: var(--bg-main);
+    background-image: url('../assets/font.png'); 
+    
+    /* Mantiene la proporción cubriendo la pantalla. 
+       Si el zoom sigue siendo molesto, cámbialo a: background-size: contain; */
+    background-size: cover; 
+    
+    /* Asegura que el centro de la imagen sea lo principal. 
+       Puedes cambiarlo a 'top center' si lo importante está arriba */
+    background-position: center center; 
+    background-repeat: no-repeat;
+}
+
+/* Capa oscura superpuesta (Overlay) corregida */
+.landing-body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    
+    /* Bajamos la oscuridad del 75% al 35% (0.35) */
+    background: rgba(9, 10, 15, 0.35); 
+    
+    /* Eliminamos el blur para recuperar la nitidez total de la imagen */
+    
+    z-index: 0;
+}
+
+/* Contenedor principal que flota sobre el fondo */
+.landing-container {
+    position: relative;
+    z-index: 1; /* Obliga al contenido a estar por encima de la capa oscura */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
+    animation: fadeUp 0.8s ease-out forwards;
+    width: 100%;
+    max-width: 900px;
+    padding: 0 2rem;
+}
+
+.landing-logo {
+    font-size: 5rem; /* Aumentamos el tamaño de 3rem a 5rem */
+    gap: 1.2rem; /* Un poco más de separación entre el ícono y el texto */
+    text-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* Sombra un poco más pronunciada para resaltar en la foto */
+}
+
+/* Hacemos que el ícono crezca junto con el texto */
+.landing-logo svg {
+    width: 70px;
+    height: 70px;
+}
+
+.landing-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    max-width: 500px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   BOTÓN MINIMALISTA
+========================================= */
+.btn-minimal {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 2.5rem;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde semitransparente inicial */
+    border-radius: 50px;
+    text-decoration: none;
+    backdrop-filter: blur(5px); /* Efecto cristalino dentro del botón */
+    transition: all 0.3s ease;
+}
+
+.btn-minimal .arrow {
+    transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.btn-minimal:hover {
+    border-color: var(--brand-salmon);
+    color: var(--brand-salmon);
+    background: rgba(255, 130, 107, 0.1); 
+}
+
+.btn-minimal:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Animación de entrada suave */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

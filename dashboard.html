@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SalmonIA Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+</head>
+<body>
+    <header class="top-nav">
+        <div class="logo">
+            <svg aria-hidden="true" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 12h4l3-9 5 18 3-9h5"/>
+            </svg>
+            <span>Salmon<span class="text-salmon">IA</span></span>
+        </div>
+        <div class="quick-stats">
+            <span>Temp. General: 12.4 °C</span>
+            <span>O₂ Promedio: 8.2 mg/L</span>
+            <span class="alert-text">1 Alerta Activa</span>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <section class="cage-card" id="cage-1">
+            <header class="cage-header">
+                <h2>JAULA 01</h2>
+                <span class="status-badge success">ÓPTIMO</span>
+            </header>
+
+            <div class="live-viewer">
+                <div class="controls">
+                    <button class="tab-btn active" onclick="setFilterMode('normal', 'cage-1')">Normal</button>
+                    <button class="tab-btn" onclick="setFilterMode('infrarrojo', 'cage-1')">Infrarrojo</button>
+                    <button class="tab-btn" onclick="setFilterMode('ultravioleta', 'cage-1')">Ultravioleta</button>
+                </div>
+
+                <a-scene embedded vr-mode-ui="enabled: false">
+                    <a-assets>
+                        <video id="video360-j1" src="assets/jaula1.mp4" autoplay loop muted playsinline crossorigin="anonymous"></video>
+                    </a-assets>
+                    <a-videosphere src="#video360-j1"></a-videosphere>
+                </a-scene>
+
+                <div class="hud-overlay">
+                    <div class="hud-data">
+                        <p>Carga bacteriana: 120 UFC/ml</p>
+                        <p>Biomasa est: 110 TON</p>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="cage-footer">
+                <p class="meta-text">Sin riesgos fitosanitarios detectados en las últimas 48 horas.</p>
+            </footer>
+        </section>
+
+        <section class="cage-card alert-layout" id="cage-2">
+            <header class="cage-header">
+                <h2>JAULA 02</h2>
+                <span class="status-badge danger" id="status-j2">ALERTA IA</span>
+            </header>
+
+            <div class="live-viewer">
+                <div class="controls">
+                    <button class="tab-btn active" onclick="setFilterMode('normal', 'cage-2')">Normal</button>
+                    <button class="tab-btn" onclick="setFilterMode('infrarrojo', 'cage-2')">Infrarrojo</button>
+                    <button class="tab-btn" onclick="setFilterMode('ultravioleta', 'cage-2')">Ultravioleta</button>
+                </div>
+
+                <a-scene embedded vr-mode-ui="enabled: false">
+                    <a-assets>
+                        <video id="video360-j2" src="assets/jaula2_final.mp4" autoplay loop muted playsinline crossorigin="anonymous"></video>
+                    </a-assets>
+                    <a-videosphere src="#video360-j2"></a-videosphere>
+                </a-scene>
+
+                <div class="hud-overlay">
+                    <div class="hud-data" id="hud-data-j2">
+                        <p>Carga bacteriana: <span class="danger-text">850 UFC/ml (CRÍTICO)</span></p>
+                        <p>Biomasa est: 125 TON</p>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="cage-footer" id="prediction-panel-j2">
+                <div class="alert-info">
+                    <strong>Riesgo P. salmonis (87% prob.)</strong>
+                    <p>Acción recomendada: Dispersión inmediata de tratamiento preventivo ecológico.</p>
+                </div>
+                <div class="actions">
+                    <button class="btn primary" id="btn-probiotics" onclick="deployProbiotics()">Desplegar Probióticos</button>
+                </div>
+            </footer>
+        </section>
+    </main>
+
+    <script src="javascript/filters.js"></script>
+    <script src="javascript/index.js"></script>
+</body>
+</html>

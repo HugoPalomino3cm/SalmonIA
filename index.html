@@ -3,223 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaSentinel IA - Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <!-- Librería A-Frame para manejar Realidad Virtual y Videos 360 nativos -->
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <title>SalmonIA | Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-9 5 18 3-9h5"/></svg>
-            AquaSentinel IA
+<body class="landing-body">
+    
+    <main class="landing-container">
+        <!-- Logo Grande -->
+        <div class="logo landing-logo">
+            <span>Salmon<span class="text-salmon">IA</span></span>
         </div>
-        <div class="quick-stats">
-            <div class="stat-item">
-                <span class="stat-label">Temp. Agua</span>
-                <span class="stat-value">12.4 °C</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Nivel O2</span>
-                <span class="stat-value">8.2 mg/L</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Alertas IA</span>
-                <span class="stat-value alert-stat">1 Activa</span>
-            </div>
-        </div>
-    </header>
-
-    <main class="dashboard">
-        <!-- Panel Izquierdo: Visor en Vivo -->
-        <section class="live-viewer">
-            <div class="viewer-tabs">
-                <button class="view-tab-btn active" id="tab-ia" onclick="setViewerMode('ia')">Modo IA</button>
-                <button class="view-tab-btn" id="tab-vr" onclick="setViewerMode('vr')">Exploración VR 360</button>
-            </div>
-            
-            <div id="pantalla-inicio">
-                <h2>Haz clic en cualquier lado para iniciar el video 360</h2>
-            </div>
-
-            <!-- Video 360 de YouTube en bucle (Por mientras) -->
-            <a-scene>
         
-                <a-assets>
-                    <video id="video360" 
-                        src="Video360.mp4" 
-                        autoplay 
-                        loop 
-                        muted 
-                        playsinline 
-                        crossorigin="anonymous">
-                    </video>
-                </a-assets>
-
-                <a-videosphere src="#video360"></a-videosphere>
-
-            </a-scene>
-            <script>
-                // Ocultar pantalla de inicio al hacer clic en el visor
-                const pantallaInicio = document.getElementById('pantalla-inicio');
-                const video360 = document.getElementById('video360');
-
-                document.querySelector('.live-viewer').addEventListener('click', () => {
-                    pantallaInicio.style.display = 'none';
-                    video360.play();
-                });
-            </script>
-            <div class="hud-overlay" id="hud-layer">
-                <div class="scan-line"></div>
-                <div class="hud-data">
-                    <p>> ANÁLISIS MICROBIOLÓGICO EN CURSO...</p>
-                    <p>> Carga bacteriana: <span style="color:var(--neon-amber)">450 UFC/ml</span></p>
-                    <p>> Turbidez: Normal</p>
-                    <p>> Biomasa est. Jaula 4: 125 TON</p>
-                </div>
-                <div class="targeting-box"></div>
-            </div>
-            
-        </section>
-
-        <!-- Panel Derecho -->
-        <aside class="right-panel">
-            
-            <!-- Cuadrícula de Jaulas -->
-            <section class="cages-panel">
-                <h2 class="panel-title">Estado de Jaulas</h2>
-                <div class="cages-grid">
-                    <div class="cage optimal">
-                        <div class="cage-number">Jaula 1</div>
-                        <div class="cage-status">Óptimo</div>
-                    </div>
-                    <div class="cage optimal">
-                        <div class="cage-number">Jaula 2</div>
-                        <div class="cage-status">Óptimo</div>
-                    </div>
-                    <div class="cage optimal">
-                        <div class="cage-number">Jaula 3</div>
-                        <div class="cage-status">Óptimo</div>
-                    </div>
-                    <div class="cage alert" id="btn-cage-4" onclick="activatePredictionPanel()">
-                        <div class="cage-number">Jaula 4</div>
-                        <div class="cage-status">ALERTA IA</div>
-                    </div>
-                    <div class="cage optimal">
-                        <div class="cage-number">Jaula 5</div>
-                        <div class="cage-status">Óptimo</div>
-                    </div>
-                    <div class="cage optimal">
-                        <div class="cage-number">Jaula 6</div>
-                        <div class="cage-status">Óptimo</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Panel de Predicción -->
-            <section class="ai-prediction" id="prediction-panel">
-                <h2 class="panel-title">Predicción Deep Tech</h2>
-                
-                <div class="alert-box">
-                    <div class="alert-title">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                        ¡PELIGRO!
-                    </div>
-                    <p class="alert-desc">Riesgo de brote de <em>Piscirickettsia salmonis</em> en 3 días.</p>
-                    <p style="margin-top: 5px; font-size: 0.9rem;">Probabilidad: <span class="prob-badge">87%</span></p>
-                </div>
-
-                <div class="actions-label">Acciones Recomendadas</div>
-                
-                <button class="btn btn-primary" id="btn-probiotics" onclick="deployProbiotics()">
-                    Desplegar probióticos (Evitar antibióticos)
-                </button>
-                <button class="btn btn-secondary">
-                    Reducir alimentación en 20%
-                </button>
-
-                <div class="impact-metric">
-                    <strong>Impacto Ecológico:</strong><br>
-                    Antibióticos evitados hoy: 80% menos vertido al fondo marino.
-                </div>
-            </section>
-        </aside>
+        <p class="landing-subtitle">Sistema Inteligente de Monitoreo Acuícola y Prevención Biológica</p>
+        
+        <!-- Botón Minimalista -->
+        <a href="dashboard.html" class="btn btn-minimal">
+            Acceder al Sistema <span class="arrow">→</span>
+        </a>
     </main>
-
-    <script>
-        // Función para activar el panel de predicción al hacer clic en la Jaula 4
-        function activatePredictionPanel() {
-            const panel = document.getElementById('prediction-panel');
-            panel.classList.add('active');
-            
-            // Efecto visual en la jaula clickeada
-            const cage4 = document.getElementById('btn-cage-4');
-            cage4.style.boxShadow = '0 0 20px rgba(255, 42, 42, 0.8)';
-            
-            // Actualizar datos del HUD para enfocarse en la jaula 4
-            const hudData = document.querySelector('.hud-data');
-            hudData.innerHTML = `
-                <p>> ANÁLISIS ENFOCADO: JAULA 4</p>
-                <p>> Carga bacteriana: <span style="color:var(--neon-red); font-weight:bold; animation: blink 1s infinite">850 UFC/ml (CRÍTICO)</span></p>
-                <p>> Detección P. salmonis: Positiva (Fase temprana)</p>
-                <p>> Calculando dosis biológica...</p>
-            `;
-        }
-
-        // Función para manejar el botón de probióticos
-        function deployProbiotics() {
-            const btn = document.getElementById('btn-probiotics');
-            
-            // Cambiar estado del botón
-            btn.className = 'btn btn-success';
-            btn.innerHTML = '✓ Desplegado con éxito';
-            btn.disabled = true;
-
-            // Actualizar status de la jaula después del despliegue
-            setTimeout(() => {
-                const cage4 = document.getElementById('btn-cage-4');
-                cage4.classList.remove('alert');
-                cage4.classList.add('optimal');
-                cage4.style.boxShadow = '0 0 20px rgba(57, 255, 20, 0.8)';
-                cage4.querySelector('.cage-status').innerText = 'Recuperación iniciada';
-                
-                // Actualizar HUD
-                const hudData = document.querySelector('.hud-data');
-                hudData.innerHTML = `
-                    <p>> INTERVENCIÓN BIOLÓGICA ACTIVA</p>
-                    <p>> Probióticos dispersados exitosamente.</p>
-                    <p>> Tasa de absorción proyectada: 94%</p>
-                    <p>> <span style="color:var(--neon-green)">Regulado con éxito. Sin uso antimicrobiano.</span></p>
-                `;
-            }, 1000);
-        }
-
-        // Función para cambiar el modo de vista (IA vs VR 360 Límpio)
-        function setViewerMode(mode) {
-            const tabIa = document.getElementById('tab-ia');
-            const tabVr = document.getElementById('tab-vr');
-            const hudLayer = document.getElementById('hud-layer');
-            const salmonCam = document.getElementById('salmon-cam');
-
-            if (mode === 'ia') {
-                tabIa.classList.add('active');
-                tabVr.classList.remove('active');
-                
-                // Mostrar HUD y oscurecer/dar efecto al video
-                hudLayer.style.opacity = '1';
-                salmonCam.style.opacity = '0.6';
-                salmonCam.style.filter = 'grayscale(30%) sepia(20%) hue-rotate(180deg) saturate(200%)';
-            } else {
-                tabVr.classList.add('active');
-                tabIa.classList.remove('active');
-                
-                // Ocultar HUD y limpiar el video para inmersión total 360
-                hudLayer.style.opacity = '0';
-                salmonCam.style.opacity = '1';
-                salmonCam.style.filter = 'none';
-            }
-        }
-    </script>
+    
 </body>
 </html>
