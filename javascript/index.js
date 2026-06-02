@@ -30,3 +30,32 @@ function deployProbiotics() {
         `;
     }, 1200);
 }
+
+// ==========================================
+// FORZAR REPRODUCCIÓN DE VIDEOS (AUTOPLAY)
+// ==========================================
+window.addEventListener('load', () => {
+    // Buscar todos los videos en la página
+    const videos = document.querySelectorAll('video');
+    
+    videos.forEach(video => {
+        // 1. Intentar forzar el play mediante código
+        let playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                // Éxito: El navegador permitió el autoplay
+                console.log("Video reproduciéndose correctamente.");
+            }).catch(error => {
+                // Fallo: El navegador bloqueó el autoplay por seguridad.
+                console.warn("Autoplay bloqueado. Esperando interacción...");
+                
+                // 2. Si lo bloquea, reproducirlo automáticamente 
+                // en cuanto el usuario haga su PRIMER clic en cualquier parte de la pantalla.
+                document.body.addEventListener('click', () => {
+                    video.play();
+                }, { once: true }); // El "once: true" asegura que este evento solo se dispare una vez
+            });
+        }
+    });
+});
