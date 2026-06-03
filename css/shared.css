@@ -1,5 +1,5 @@
 /* =========================================
-   VARIABLES GLOBALES (COMPARTIDAS)
+   1. VARIABLES GLOBALES
 ========================================= */
 :root {
     --bg-main: #090a0f;
@@ -12,11 +12,13 @@
     --danger: #ef4444;
     --border: #1f2937;
     --brand-salmon: #ff826b; 
+    
     --header-height: 55px;
+    --footer-height: 40px;
 }
 
 /* =========================================
-   RESET & TYPOGRAPHY
+   2. RESET & BASE GLOBAL
 ========================================= */
 * {
     box-sizing: border-box;
@@ -26,13 +28,20 @@
 
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: var(--bg-main);
     color: var(--text-main);
+    
+    /* Fondo global para todo el proyecto */
+    background: linear-gradient(rgba(9, 10, 15, 0.5), rgba(9, 10, 15, 0.5)), url('../assets/font.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* =========================================
-   MARCA Y LOGO
+   3. MARCA Y UTILIDADES DE TEXTO
 ========================================= */
+
 .logo {
     display: flex;
     align-items: center;
@@ -40,18 +49,24 @@ body {
     font-weight: 700;
     font-size: 1.4rem;
     letter-spacing: -0.5px;
+    
+    /* Agrega estas dos líneas: */
+    text-decoration: none; 
+    color: var(--text-main); 
 }
 
-.logo svg {
-    color: var(--brand-salmon);
-}
-
+.logo svg,
 .text-salmon {
     color: var(--brand-salmon);
 }
 
+.danger-text {
+    color: var(--danger);
+    font-weight: 600;
+}
+
 /* =========================================
-   BOTONES GLOBALES
+   4. BOTONES (ESTILOS BASE)
 ========================================= */
 .btn {
     display: inline-block;
@@ -71,7 +86,7 @@ body {
 }
 
 .btn.primary {
-    background: var(--brand-salmon); /* Cambié el botón principal al color de la marca */
+    background: var(--brand-salmon);
     color: #000;
     font-weight: 600;
 }
@@ -83,4 +98,38 @@ body {
 .btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+/* =========================================
+   5. FOOTER GLOBAL (PIE DE PÁGINA)
+========================================= */
+.main-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    height: var(--footer-height);
+    width: 100%;
+    z-index: 20;
+    flex-shrink: 0; /* Evita que se aplaste en layouts flexibles */
+}
+
+.footer-pucv {
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+.team-list {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.team-list span {
+    color: var(--text-main);
+    font-weight: 500;
 }

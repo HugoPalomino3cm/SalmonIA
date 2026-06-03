@@ -1,5 +1,5 @@
 /* =========================================
-   LAYOUT LANDING PAGE Y FONDO
+   1. LAYOUT: PANTALLA DE INICIO
 ========================================= */
 .landing-body {
     height: 100dvh;
@@ -8,38 +8,11 @@
     align-items: center;
     overflow: hidden;
     position: relative;
-    
-    background-color: var(--bg-main);
-    background-image: url('../assets/font.png'); 
-    
-    /* Mantiene la proporción cubriendo la pantalla. 
-       Si el zoom sigue siendo molesto, cámbialo a: background-size: contain; */
-    background-size: cover; 
-    
-    /* Asegura que el centro de la imagen sea lo principal. 
-       Puedes cambiarlo a 'top center' si lo importante está arriba */
-    background-position: center center; 
-    background-repeat: no-repeat;
 }
 
-/* Capa oscura superpuesta (Overlay) corregida */
-.landing-body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    
-    /* Bajamos la oscuridad del 75% al 35% (0.35) */
-    background: rgba(9, 10, 15, 0.35); 
-    
-    /* Eliminamos el blur para recuperar la nitidez total de la imagen */
-    
-    z-index: 0;
-}
-
-/* Contenedor principal que flota sobre el fondo */
 .landing-container {
     position: relative;
-    z-index: 1; /* Obliga al contenido a estar por encima de la capa oscura */
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,29 +24,79 @@
     padding: 0 2rem;
 }
 
+/* =========================================
+   2. MARCA Y PRESENTACIÓN
+========================================= */
 .landing-logo {
-    font-size: 5rem; /* Aumentamos el tamaño de 3rem a 5rem */
-    gap: 1.2rem; /* Un poco más de separación entre el ícono y el texto */
-    text-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* Sombra un poco más pronunciada para resaltar en la foto */
+    font-size: 5rem; 
+    gap: 1.2rem; 
+    text-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); 
+    margin-bottom: -1rem; /* Acerca el logo al texto */
 }
 
-/* Hacemos que el ícono crezca junto con el texto */
 .landing-logo svg {
     width: 70px;
     height: 70px;
 }
 
+.project-presentation {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
 .landing-subtitle {
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    font-weight: 300;
+    color: var(--text-main);
+    font-size: 1.4rem;
+    font-weight: 600;
     letter-spacing: 0.5px;
-    max-width: 500px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
+.landing-description {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 650px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
 /* =========================================
-   BOTÓN MINIMALISTA
+   3. SECCIÓN DEL EQUIPO
+========================================= */
+.team-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1rem 0;
+}
+
+.team-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--brand-salmon); 
+    font-weight: 600;
+}
+
+.team-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem; /* Espaciado normal de texto hacia abajo */
+    list-style: none;
+}
+
+.team-tags li {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    /* Sin sombras, sin fondos, sin efectos. Solo texto. */
+}
+
+/* =========================================
+   4. COMPONENTES: BOTÓN MINIMALISTA
 ========================================= */
 .btn-minimal {
     display: inline-flex;
@@ -83,18 +106,18 @@
     font-size: 0.95rem;
     color: var(--text-main);
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde semitransparente inicial */
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50px;
     text-decoration: none;
-    backdrop-filter: blur(5px); /* Efecto cristalino dentro del botón */
+    backdrop-filter: blur(5px);
     transition: all 0.3s ease;
+    margin-top: 1rem;
 }
 
 .btn-minimal .arrow {
     transition: transform 0.3s ease;
 }
 
-/* Efecto al pasar el mouse */
 .btn-minimal:hover {
     border-color: var(--brand-salmon);
     color: var(--brand-salmon);
@@ -103,16 +126,4 @@
 
 .btn-minimal:hover .arrow {
     transform: translateX(5px);
-}
-
-/* Animación de entrada suave */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }

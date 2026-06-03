@@ -1,29 +1,62 @@
 /* =========================================
-   HEADER / TOP NAV
+   1. LAYOUT BASE DEL DASHBOARD
+========================================= */
+/* Sobrescribe el body global solo para darle comportamiento de App */
+body {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: calc(100dvh - var(--header-height) - var(--footer-height));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* =========================================
+   2. EFECTO CRISTAL (GLASSMORPHISM)
+========================================= */
+
+/* Tarjetas de jaulas (Más oscuras para no perder contraste en los datos) */
+.cage-card {
+    background-color: rgba(9, 10, 15, 0.4) !important;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Header y Footer (Más transparentes y con borde de cristal) */
+.top-nav, 
+.main-footer {
+    background-color: rgba(9, 10, 15, 0.4) !important;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Aplicamos el brillo sutil a la línea separadora */
+.top-nav {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.main-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* =========================================
+   3. HEADER / NAVEGACIÓN SUPERIOR
 ========================================= */
 .top-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 1.5rem;
-    background-color: var(--bg-surface);
-    border-bottom: 1px solid var(--border);
+    /* Ya no necesitamos la línea del borde aquí porque la pusimos arriba en el efecto cristal */
     font-size: 0.9rem;
     height: var(--header-height);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 700;       /* Letra más gruesa */
-    font-size: 1.4rem;      /* Tamaño más grande */
-    letter-spacing: -0.5px; /* Las letras un poco más juntas para que parezca un logo */
-}
-
-/* Clase para pintar la "IA" */
-.text-salmon {
-    color: var(--brand-salmon);
+    flex-shrink: 0;
 }
 
 .quick-stats {
@@ -38,21 +71,9 @@
 }
 
 /* =========================================
-   LAYOUT: DASHBOARD
-========================================= */
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    height: calc(100dvh - var(--header-height));
-    gap: 1rem;
-    padding: 1rem;
-}
-
-/* =========================================
-   COMPONENTS: CAGE CARDS
+   4. TARJETAS DE JAULAS (CAGE CARDS)
 ========================================= */
 .cage-card {
-    background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: 8px;
     display: flex;
@@ -79,7 +100,6 @@
     letter-spacing: 0.5px;
 }
 
-/* Badges */
 .status-badge {
     font-size: 0.75rem;
     font-weight: 600;
@@ -90,7 +110,7 @@
 .status-badge.danger  { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
 
 /* =========================================
-   COMPONENTS: LIVE VIEWER (A-FRAME)
+   5. VISOR 360 (A-FRAME)
 ========================================= */
 .live-viewer {
     position: relative;
@@ -102,10 +122,10 @@
 a-scene {
     width: 100%;
     height: 100%;
-    display: block; /* Evita márgenes fantasma debajo del canvas */
+    display: block;
 }
 
-/* Controles de filtro */
+/* Controles de cámara */
 .controls {
     position: absolute;
     top: 0.75rem;
@@ -126,17 +146,10 @@ a-scene {
     transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.tab-btn:hover {
-    background: rgba(18, 20, 28, 1);
-}
+.tab-btn:hover { background: rgba(18, 20, 28, 1); }
+.tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-.tab-btn.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-}
-
-/* HUD Overlay */
+/* HUD (Interfaz sobrepuesta) */
 .hud-overlay {
     position: absolute;
     inset: 0;
@@ -154,19 +167,13 @@ a-scene {
     display: inline-block;
 }
 
-.danger-text {
-    color: var(--danger);
-    font-weight: 600;
-}
-
 /* =========================================
-   COMPONENTS: CAGE FOOTER & ACTIONS
+   6. PANEL DE ACCIONES (FOOTER DE JAULA)
 ========================================= */
 .cage-footer {
     padding: 1rem;
-    background: rgba(9, 10, 15, 0.3);
+    background: transparent !important; /* Hereda el cristal del contenedor padre */
     border-top: 1px solid var(--border);
-    font-size: 0.85rem;
 }
 
 .meta-text {
@@ -188,34 +195,13 @@ a-scene {
     font-size: 0.8rem;
 }
 
-/* Buttons */
-.btn {
+/* Forzar que el botón de acción llene todo el ancho en el footer */
+.actions .btn {
     width: 100%;
-    padding: 0.6rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.8rem;
-    transition: background-color 0.2s ease, opacity 0.2s ease;
-}
-
-.btn.primary {
-    background: var(--accent);
-    color: white;
-}
-
-.btn.primary:hover:not(:disabled) {
-    background: #2563eb; /* Un azul más oscuro para el hover */
-}
-
-.btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
 }
 
 /* =========================================
-   LOADER / PANTALLA DE INICIO
+   7. LOADER / PANTALLA DE CARGA
 ========================================= */
 .loader-title {
     position: fixed;
@@ -225,7 +211,7 @@ a-scene {
     height: 100dvh;
     z-index: 9999;
     background-color: rgba(9, 10, 15, 0.85);
-    backdrop-filter: blur(8px); /* Efecto cristalino moderno */
+    backdrop-filter: blur(8px);
     display: flex;
     flex-direction: column;
     justify-content: center;
