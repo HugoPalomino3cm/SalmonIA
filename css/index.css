@@ -31,7 +31,7 @@
     font-size: 5rem; 
     gap: 1.2rem; 
     text-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); 
-    margin-bottom: -1rem; /* Acerca el logo al texto */
+    margin-bottom: -1rem; 
 }
 
 .landing-logo svg {
@@ -85,14 +85,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.2rem; /* Espaciado normal de texto hacia abajo */
+    gap: 0.2rem; 
     list-style: none;
 }
 
 .team-tags li {
     font-size: 0.95rem;
     color: var(--text-main);
-    /* Sin sombras, sin fondos, sin efectos. Solo texto. */
 }
 
 /* =========================================
@@ -126,4 +125,33 @@
 
 .btn-minimal:hover .arrow {
     transform: translateX(5px);
+}
+
+/* =========================================
+   5. MEDIA QUERIES (RESPONSIVE)
+========================================= */
+/* Para iPads y Tablets */
+@media (max-width: 1024px) {
+    .landing-logo { font-size: 4rem; }
+    .landing-logo svg { width: 55px; height: 55px; }
+    .landing-subtitle { font-size: 1.2rem; }
+}
+
+/* Para Celulares */
+@media (max-width: 768px) {
+    .landing-logo { font-size: 3rem; }
+    .landing-logo svg { width: 45px; height: 45px; }
+    
+    .landing-subtitle { 
+        font-size: 1.1rem; 
+        padding: 0 1rem;
+    }
+    
+    .landing-description { 
+        font-size: 0.9rem; 
+    }
+    
+    .btn-minimal { 
+        padding: 0.7rem 2rem; 
+    }
 }

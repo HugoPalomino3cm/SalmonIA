@@ -49,8 +49,6 @@ body {
     font-weight: 700;
     font-size: 1.4rem;
     letter-spacing: -0.5px;
-    
-    /* Agrega estas dos líneas: */
     text-decoration: none; 
     color: var(--text-main); 
 }
@@ -115,7 +113,7 @@ body {
     height: var(--footer-height);
     width: 100%;
     z-index: 20;
-    flex-shrink: 0; /* Evita que se aplaste en layouts flexibles */
+    flex-shrink: 0; 
 }
 
 .footer-pucv {
@@ -132,4 +130,23 @@ body {
 .team-list span {
     color: var(--text-main);
     font-weight: 500;
+}
+
+/* =========================================
+   6. MEDIA QUERIES (RESPONSIVE)
+========================================= */
+@media (max-width: 768px) {
+    .main-footer {
+        height: auto;
+        flex-direction: column;
+        gap: 0.6rem;
+        padding: 0.8rem;
+        text-align: center;
+    }
+    
+    .team-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        line-height: 1.4;
+    }
 }

@@ -1,5 +1,64 @@
-// Lógica general e interacciones operacionales del Dashboard
+/* =========================================
+   1. MÓDULO DE SIMULACIÓN DE SENSORES
+========================================= */
+class AquacultureSensors {
+    constructor() {
+        const statsElements = document.querySelectorAll('.quick-stats span');
+        
+        if (statsElements.length >= 2) {
+            this.tempElement = statsElements[0];
+            this.o2Element = statsElements[1];
+            
+            this.currentTemp = 12.4; 
+            this.currentO2 = 8.2;    
+            
+            this.intervalId = null;
+        }
+    }
 
+    fluctuate() {
+        const tempDelta = (Math.random() * 0.3) - 0.15;
+        const o2Delta = (Math.random() * 0.4) - 0.2;
+
+        this.currentTemp += tempDelta;
+        this.currentO2 += o2Delta;
+
+        this.currentTemp = this.clamp(this.currentTemp, 10.0, 14.5);
+        this.currentO2 = this.clamp(this.currentO2, 6.5, 9.5);
+
+        this.updateUI();
+    }
+
+    clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+    }
+
+    updateUI() {
+        if (this.tempElement && this.o2Element) {
+            this.tempElement.textContent = `Temp. General: ${this.currentTemp.toFixed(1)} °C`;
+            this.o2Element.textContent = `O₂ Promedio: ${this.currentO2.toFixed(1)} mg/L`;
+        }
+    }
+
+    start(intervalMs = 3500) {
+        if (!this.tempElement) return;
+
+        this.stop(); 
+        this.updateUI();
+        this.intervalId = setInterval(() => this.fluctuate(), intervalMs);
+    }
+
+    stop() {
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        }
+    }
+}
+
+/* =========================================
+   2. INTERACCIONES OPERACIONALES
+========================================= */
 // Despliegue de mitigación biológica (Jaula 2)
 function deployProbiotics() {
     const btn = document.getElementById('btn-probiotics');
@@ -31,9 +90,17 @@ function deployProbiotics() {
     }, 1200);
 }
 
-// ==========================================
-// FORZAR REPRODUCCIÓN DE VIDEOS (AUTOPLAY)
-// ==========================================
+/* =========================================
+   3. INICIALIZACIÓN AL CARGAR LA PÁGINA
+========================================= */
+// Iniciar fluctuación de sensores
+document.addEventListener('DOMContentLoaded', () => {
+    const sensorMonitor = new AquacultureSensors();
+    // Actualiza los datos cada 3.5 segundos
+    sensorMonitor.start(3500); 
+});
+
+// Forzar reproducción de videos (Autoplay)
 window.addEventListener('load', () => {
     // Buscar todos los videos en la página
     const videos = document.querySelectorAll('video');
