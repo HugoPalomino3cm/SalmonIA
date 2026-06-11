@@ -64,7 +64,10 @@
                 </a-scene>
 
                 <div class="hud-overlay">
-                    <div class="hud-data" id="hud-data-j1">
+                    <button class="hud-toggle-btn" onclick="toggleHud('hud-data-j1')" title="Mostrar/Ocultar Datos">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                    <div class="hud-data" id="hud-data-j1" style="display: none;">
                         <p id="stat-bact-j1">Carga Microbiológica: 120 UFC/ml</p>
                         <p id="stat-bio-j1">Biomasa Total: 1,250.0 TON</p>
                         <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 6px 0;">
@@ -104,7 +107,10 @@
                 </a-scene>
 
                 <div class="hud-overlay">
-                    <div class="hud-data" id="hud-data-j2">
+                    <button class="hud-toggle-btn" onclick="toggleHud('hud-data-j2')" title="Mostrar/Ocultar Datos">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                    <div class="hud-data" id="hud-data-j2" style="display: none;">
                         <p id="stat-bact-j2">Carga Microbiológica: 125 UFC/ml</p>
                         <p id="stat-bio-j2">Biomasa Total: 1,280.0 TON</p>
                         <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 6px 0;">

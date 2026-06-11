@@ -156,6 +156,17 @@ function quarantineSalmon() {
     }, 1500);
 }
 
+function toggleHud(hudId) {
+    const hudElement = document.getElementById(hudId);
+    if (hudElement) {
+        if (hudElement.style.display === 'none') {
+            hudElement.style.display = 'block';
+        } else {
+            hudElement.style.display = 'none';
+        }
+    }
+}
+
 /* =========================================
    3. INICIALIZACIÓN AL CARGAR LA PÁGINA
 ========================================= */
