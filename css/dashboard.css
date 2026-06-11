@@ -221,13 +221,15 @@ a-scene {
 /* Para iPads y Tablets */
 @media (max-width: 1024px) {
     body {
-        overflow-y: auto; 
+        height: auto;
+        min-height: 100dvh;
+        overflow-y: visible; 
     }
     
     .dashboard {
         grid-template-columns: 1fr; 
         height: auto; 
-        min-height: calc(100dvh - var(--header-height) - var(--footer-height));
+        flex-grow: 1;
     }
     
     .cage-card {

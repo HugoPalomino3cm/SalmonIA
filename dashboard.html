@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dashboard de Monitoreo. Panel de control en tiempo real con IA y visión 360° para la gestión y estabilización acuícola.">
-    
+    <meta name="description"
+        content="Dashboard de Monitoreo. Panel de control en tiempo real con IA y visión 360° para la gestión y estabilización acuícola.">
+
     <title>SalmonIA Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/shared.css">
@@ -12,90 +14,114 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 </head>
+
 <body>
     <header class="top-nav">
         <a href="index.html" class="logo">
-            <svg aria-hidden="true" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M2 12h4l3-9 5 18 3-9h5"/>
+            <svg aria-hidden="true" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M2 12h4l3-9 5 18 3-9h5" />
             </svg>
             <span>Salmon<span class="text-salmon">IA</span></span>
         </a>
-        
+
         <div class="quick-stats">
-            <span>Temp. General: 12.4 °C</span>
-            <span>O₂ Promedio: 8.2 mg/L</span>
+            <span id="stat-temp">Temperatura Sistémica: 11.2 °C</span>
+            <span id="stat-o2">Saturación O₂: 8.5 mg/L</span>
+            <span id="stat-salinity">Salinidad: 32.4 PSU</span>
         </div>
     </header>
+
+    <div
+        style="background: rgba(9, 10, 15, 0.6); border-bottom: 1px solid var(--border); padding: 0.6rem 1.5rem; display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">
+        <span style="color: var(--accent); font-weight: 600; flex-shrink: 0;">GESTOR IA</span>
+        <span id="global-log">IA Nutricional: Ajustando raciones en tiempo real para maximizar inmunidad natural y
+            evitar tratamientos farmacológicos.</span>
+    </div>
 
     <main class="dashboard">
         <section class="cage-card" id="cage-1">
             <header class="cage-header">
-                <h2>JAULA 01</h2>
-                <span class="status-badge success">ÓPTIMO</span>
+                <h2>UNIDAD DE CULTIVO 01</h2>
+                <span class="status-badge success">ESTADO NOMINAL</span>
             </header>
 
             <div class="live-viewer">
                 <div class="controls">
-                    <button class="tab-btn active" onclick="setFilterMode('normal', 'cage-1')">Normal</button>
-                    <button class="tab-btn" onclick="setFilterMode('infrarrojo', 'cage-1')">Infrarrojo</button>
-                    <button class="tab-btn" onclick="setFilterMode('ultravioleta', 'cage-1')">Ultravioleta</button>
+                    <button class="tab-btn active" onclick="setFilterMode('normal', 'cage-1')">Espectro Visible</button>
+                    <button class="tab-btn" onclick="setFilterMode('infrarrojo', 'cage-1')">Termografía
+                        Infrarroja</button>
+                    <button class="tab-btn" onclick="setFilterMode('ultravioleta', 'cage-1')">Contraste
+                        Multiespectral</button>
                 </div>
 
                 <a-scene embedded vr-mode-ui="enabled: false">
                     <a-assets>
-                        <video id="video360-j1" src="assets/jaula1.mp4" autoplay loop muted playsinline crossorigin="anonymous"></video>
+                        <video id="video360-j1" src="assets/jaula1.mp4" autoplay loop muted playsinline
+                            crossorigin="anonymous"></video>
                     </a-assets>
                     <a-videosphere src="#video360-j1"></a-videosphere>
                 </a-scene>
 
                 <div class="hud-overlay">
-                    <div class="hud-data">
-                        <p>Carga bacteriana: 120 UFC/ml</p>
-                        <p>Biomasa est: 110 TON</p>
+                    <div class="hud-data" id="hud-data-j1">
+                        <p id="stat-bact-j1">Carga Microbiológica: 120 UFC/ml</p>
+                        <p id="stat-bio-j1">Biomasa Total: 1,250.0 TON</p>
+                        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 6px 0;">
+                        <p id="stat-feed-j1" style="color: var(--accent);">Dispensación IA: 14.5 kg/min</p>
+                        <p id="stat-atb-j1">Uso Antimicrobianos: <span class="success-text">0.0 mg/kg</span></p>
                     </div>
                 </div>
             </div>
 
             <footer class="cage-footer">
-                <p class="meta-text">Sin riesgos fitosanitarios detectados en las últimas 48 horas.</p>
+                <p class="meta-text">Condiciones biosanitarias estables. Sin eventos anómalos reportados en el último
+                    ciclo de monitoreo (48h).</p>
             </footer>
         </section>
 
         <section class="cage-card alert-layout" id="cage-2">
             <header class="cage-header">
-                <h2>JAULA 02</h2>
-                <span class="status-badge danger" id="status-j2">ALERTA IA</span>
+                <h2>UNIDAD DE CULTIVO 02</h2>
+                <span class="status-badge danger" id="status-j2">ALERTA ALGORÍTMICA</span>
             </header>
 
             <div class="live-viewer">
                 <div class="controls">
-                    <button class="tab-btn active" onclick="setFilterMode('normal', 'cage-2')">Normal</button>
-                    <button class="tab-btn" onclick="setFilterMode('infrarrojo', 'cage-2')">Infrarrojo</button>
-                    <button class="tab-btn" onclick="setFilterMode('ultravioleta', 'cage-2')">Ultravioleta</button>
+                    <button class="tab-btn active" onclick="setFilterMode('normal', 'cage-2')">Espectro Visible</button>
+                    <button class="tab-btn" onclick="setFilterMode('infrarrojo', 'cage-2')">Termografía
+                        Infrarroja</button>
+                    <button class="tab-btn" onclick="setFilterMode('ultravioleta', 'cage-2')">Contraste
+                        Multiespectral</button>
                 </div>
 
                 <a-scene embedded vr-mode-ui="enabled: false">
                     <a-assets>
-                        <video id="video360-j2" src="assets/jaula2.mp4" autoplay loop muted playsinline crossorigin="anonymous"></video>
+                        <video id="video360-j2" src="assets/jaula2.mp4" autoplay loop muted playsinline
+                            crossorigin="anonymous"></video>
                     </a-assets>
                     <a-videosphere src="#video360-j2"></a-videosphere>
                 </a-scene>
 
                 <div class="hud-overlay">
                     <div class="hud-data" id="hud-data-j2">
-                        <p>Carga bacteriana: <span class="danger-text">850 UFC/ml (CRÍTICO)</span></p>
-                        <p>Biomasa est: 125 TON</p>
+                        <p id="stat-bact-j2">Carga Microbiológica: 125 UFC/ml</p>
+                        <p id="stat-bio-j2">Biomasa Total: 1,280.0 TON</p>
+                        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 6px 0;">
+                        <p id="stat-feed-j2" style="color: var(--accent);">Dispensación IA: 14.2 kg/min</p>
+                        <p id="stat-atb-j2">Uso Antimicrobianos: <span class="success-text">0.0 mg/kg</span></p>
                     </div>
                 </div>
             </div>
 
             <footer class="cage-footer" id="prediction-panel-j2">
                 <div class="alert-info">
-                    <strong>Riesgo P. salmonis (87% prob.)</strong>
-                    <p>Acción recomendada: Dispersión inmediata de tratamiento preventivo ecológico.</p>
+                    <strong>Aviso Preventivo: Espécimen con sintomatología patológica</strong>
+                    <p>Directriz operativa: Aislamiento preventivo mediante ROV para evaluación clínica.</p>
                 </div>
                 <div class="actions">
-                    <button class="btn primary" id="btn-probiotics" onclick="deployProbiotics()">Desplegar Probióticos</button>
+                    <button class="btn primary" id="btn-quarantine" onclick="quarantineSalmon()">Ejecutar Protocolo de
+                        Aislamiento</button>
                 </div>
             </footer>
         </section>
@@ -103,11 +129,11 @@
 
     <footer class="main-footer">
         <div class="footer-pucv">
-            SalmonIA • PUCV
+            SalmonIA
         </div>
         <div class="team-list">
-            <span>Constanza Pinto</span> • 
-            <span>Ariel Leiva</span> • 
+            <span>Constanza Pinto</span> •
+            <span>Ariel Leiva</span> •
             <span>Franco Bernal</span> •
             <span>Hugo Palomino</span> •
             <span>Daniela Talamilla</span>
@@ -117,4 +143,5 @@
     <script src="javascript/filters.js"></script>
     <script src="javascript/index.js"></script>
 </body>
+
 </html>
