@@ -6,7 +6,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-Lógica-yellow?style=flat-square&logo=javascript)
 ![A-Frame](https://img.shields.io/badge/A--Frame-1.4.2-red?style=flat-square)
 
-🔗 **[Ver demo en vivo](https://hugopalomin3cm.github.io/SalmonIA/)**
+🔗 **[Ver demo en vivo](https://hugopalomin3cm.github.io/SalmonIA/)**<br>
 🎤 **[Ver pitch](https://youtu.be/7Kl1IRQ7FY4)**
 
 Proyecto desarrollado en la **[Pontificia Universidad Católica de Valparaíso](https://www.pucv.cl/)**, en el marco de la asignatura **"Innovación para mi profesión"**.
