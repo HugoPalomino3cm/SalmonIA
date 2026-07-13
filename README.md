@@ -7,6 +7,7 @@
 ![A-Frame](https://img.shields.io/badge/A--Frame-1.4.2-red?style=flat-square)
 
 🔗 **[Ver demo en vivo](https://hugopalomin3cm.github.io/SalmonIA/)**
+🎤 **[Ver pitch](https://youtu.be/7Kl1IRQ7FY4)**
 
 Proyecto desarrollado en la **[Pontificia Universidad Católica de Valparaíso](https://www.pucv.cl/)**, en el marco de la asignatura **"Innovación para mi profesión"**.
 
@@ -14,13 +15,12 @@ Proyecto desarrollado en la **[Pontificia Universidad Católica de Valparaíso](
 
 **SalmonIA** es un **prototipo web** de propuesta de solución para la **mitigación de riesgos biosanitarios** en la industria salmonera. Simula un sistema de monitoreo con visualización inmersiva 360° de unidades de cultivo, filtros espectrales y comportamientos de IA teóricos, con el fin de demostrar la viabilidad del concepto.
 
-
 ## Equipo
-- [Constanza Pinto](https://github.com/)
+- Constanza Pinto
 - [Ariel Leiva](https://github.com/Ariel-Leiva)
 - [Franco Bernal](https://github.com/frankezu)
 - [Hugo Palomino](https://github.com/HugoPalomino3cm)
-- [Daniela Talamilla](https://github.com/)
+- Daniela Talamilla
 
 ## Estructura del proyecto
 ```
