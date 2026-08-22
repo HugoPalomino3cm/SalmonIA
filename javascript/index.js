@@ -177,12 +177,18 @@ document.addEventListener('DOMContentLoaded', () => {
     window.sensorMonitor.start(3500); 
 });
 
-// Forzar reproducción de videos (Autoplay)
+// Forzar reproducción de videos (Autoplay) e implementar Lazy Loading
 window.addEventListener('load', () => {
     // Buscar todos los videos en la página
     const videos = document.querySelectorAll('video');
     
     videos.forEach(video => {
+        // Carga perezosa (Lazy load)
+        if (video.hasAttribute('data-src')) {
+            video.src = video.getAttribute('data-src');
+            video.load();
+        }
+
         // 1. Intentar forzar el play mediante código
         let playPromise = video.play();
         

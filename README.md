@@ -16,11 +16,9 @@ Proyecto desarrollado en la **[Pontificia Universidad Católica de Valparaíso](
 **SalmonIA** es un **prototipo web** de propuesta de solución para la **mitigación de riesgos biosanitarios** en la industria salmonera. Simula un sistema de monitoreo con visualización inmersiva 360° de unidades de cultivo, filtros espectrales y comportamientos de IA teóricos, con el fin de demostrar la viabilidad del concepto.
 
 ## Equipo
-- Constanza Pinto
 - [Ariel Leiva](https://github.com/Ariel-Leiva)
 - [Franco Bernal](https://github.com/frankezu)
 - [Hugo Palomino](https://github.com/HugoPalomino3cm)
-- Daniela Talamilla
 
 ## Estructura del proyecto
 ```

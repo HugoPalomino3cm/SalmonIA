@@ -57,7 +57,7 @@
 
                 <a-scene embedded vr-mode-ui="enabled: false">
                     <a-assets>
-                        <video id="video360-j1" src="assets/jaula1.mp4" autoplay loop muted playsinline
+                        <video id="video360-j1" data-src="assets/jaula1.mp4" loop muted playsinline preload="none"
                             crossorigin="anonymous"></video>
                     </a-assets>
                     <a-videosphere src="#video360-j1"></a-videosphere>
@@ -100,7 +100,7 @@
 
                 <a-scene embedded vr-mode-ui="enabled: false">
                     <a-assets>
-                        <video id="video360-j2" src="assets/jaula2.mp4" autoplay loop muted playsinline
+                        <video id="video360-j2" data-src="assets/jaula2.mp4" loop muted playsinline preload="none"
                             crossorigin="anonymous"></video>
                     </a-assets>
                     <a-videosphere src="#video360-j2"></a-videosphere>
@@ -138,11 +138,9 @@
             SalmonIA
         </div>
         <div class="team-list">
-            <span>Constanza Pinto</span> •
             <span>Ariel Leiva</span> •
             <span>Franco Bernal</span> •
-            <span>Hugo Palomino</span> •
-            <span>Daniela Talamilla</span>
+            <span>Hugo Palomino</span>
         </div>
     </footer>
 
